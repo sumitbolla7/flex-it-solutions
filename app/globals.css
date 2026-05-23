@@ -143,3 +143,23 @@ input:focus, textarea:focus {
   border-color: rgba(139, 92, 246, 0.6) !important;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
+/* Fix white input autofill override */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #0d0a1a inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Force dark background on all inputs */
+input, textarea {
+  background-color: #0d0a1a !important;
+  color: #ffffff !important;
+  color-scheme: dark;
+}
