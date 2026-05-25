@@ -2,79 +2,67 @@
 
 import { motion } from 'framer-motion'
 import { ShoppingCart, GraduationCap, Building2, Palette, RefreshCw, Smartphone } from 'lucide-react'
+import SectionHeader from '@/components/ui/SectionHeader'
+import GradientBlob from '@/components/ui/GradientBlob'
 
 const services = [
   {
     icon: ShoppingCart,
     title: 'E-commerce Development',
     desc: 'High-converting online stores with seamless checkout, inventory management, and payment gateway integrations.',
-    color: 'from-purple-600/20 to-purple-600/5',
-    border: 'hover:border-purple-500/50',
-    glow: 'rgba(139,92,246,0.2)',
+    gradient: 'from-violet-500/10 to-violet-600/5',
+    iconBg: 'bg-violet-100 text-violet-600',
   },
   {
     icon: GraduationCap,
     title: 'Educational Platforms',
     desc: 'Feature-rich LMS platforms, course portals, and student management systems built for scale.',
-    color: 'from-blue-600/20 to-blue-600/5',
-    border: 'hover:border-blue-500/50',
-    glow: 'rgba(59,130,246,0.2)',
+    gradient: 'from-blue-500/10 to-blue-600/5',
+    iconBg: 'bg-blue-100 text-blue-600',
   },
   {
     icon: Building2,
     title: 'Custom Business Websites',
     desc: 'Professional business websites that communicate your brand story and drive qualified leads.',
-    color: 'from-orange-600/20 to-orange-600/5',
-    border: 'hover:border-orange-500/50',
-    glow: 'rgba(249,115,22,0.2)',
+    gradient: 'from-indigo-500/10 to-indigo-600/5',
+    iconBg: 'bg-indigo-100 text-indigo-600',
   },
   {
     icon: Palette,
     title: 'UI/UX Design',
     desc: 'User-centered design that combines aesthetics with functionality for unforgettable digital experiences.',
-    color: 'from-pink-600/20 to-pink-600/5',
-    border: 'hover:border-pink-500/50',
-    glow: 'rgba(236,72,153,0.2)',
+    gradient: 'from-purple-500/10 to-purple-600/5',
+    iconBg: 'bg-purple-100 text-purple-600',
   },
   {
     icon: RefreshCw,
     title: 'Website Redesign',
     desc: 'Transform your outdated website into a modern, conversion-optimized digital powerhouse.',
-    color: 'from-emerald-600/20 to-emerald-600/5',
-    border: 'hover:border-emerald-500/50',
-    glow: 'rgba(16,185,129,0.2)',
+    gradient: 'from-emerald-500/10 to-emerald-600/5',
+    iconBg: 'bg-emerald-100 text-emerald-600',
   },
   {
     icon: Smartphone,
     title: 'Mobile-First Development',
     desc: 'Responsive websites and PWAs built mobile-first to deliver flawless experiences across all devices.',
-    color: 'from-cyan-600/20 to-cyan-600/5',
-    border: 'hover:border-cyan-500/50',
-    glow: 'rgba(6,182,212,0.2)',
+    gradient: 'from-cyan-500/10 to-cyan-600/5',
+    iconBg: 'bg-cyan-100 text-cyan-600',
   },
 ]
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-purple-900/10 rounded-full blur-[150px] pointer-events-none" />
+    <section id="services" className="py-24 sm:py-28 relative overflow-hidden bg-white">
+      <GradientBlob className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60" size="lg" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <p className="section-label mb-3">What We Do</p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold">Services</h2>
-          <p className="text-white/50 mt-4 max-w-xl mx-auto">
-            From concept to launch, we deliver end-to-end digital solutions that grow your business.
-          </p>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <SectionHeader
+          label="What We Do"
+          title="Services"
+          description="From concept to launch, we deliver end-to-end digital solutions that grow your business."
+        />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
             <motion.div
               key={s.title}
@@ -82,23 +70,18 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className={`relative rounded-2xl p-6 border border-white/8 bg-gradient-to-br ${s.color} card-hover group cursor-default ${s.border}`}
+              className={`card-glow-hover relative rounded-premium p-7 bg-gradient-to-br ${s.gradient} bg-white border border-gray-100 shadow-soft card-hover group h-full flex flex-col`}
             >
-              {/* Icon */}
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                style={{ background: `radial-gradient(circle, ${s.glow} 0%, transparent 70%)`, border: `1px solid ${s.glow}` }}
-              >
-                <s.icon className="w-6 h-6 text-white" />
+              <div className={`w-14 h-14 rounded-2xl ${s.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <s.icon className="w-7 h-7" />
               </div>
 
-              <h3 className="font-display text-lg font-semibold text-white mb-3 group-hover:text-gradient-purple transition">
+              <h3 className="font-display text-xl font-semibold text-text-primary mb-3 group-hover:text-gradient transition-colors">
                 {s.title}
               </h3>
-              <p className="text-white/50 text-sm leading-relaxed">{s.desc}</p>
+              <p className="text-text-secondary text-sm leading-relaxed flex-grow">{s.desc}</p>
 
-              {/* Arrow */}
-              <div className="mt-5 flex items-center gap-2 text-sm text-white/30 group-hover:text-purple-400 transition">
+              <div className="mt-6 flex items-center gap-2 text-sm font-medium text-accent-violet opacity-0 group-hover:opacity-100 transition-opacity">
                 <span>Learn more</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>

@@ -3,12 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Briefcase, Users, TrendingUp, Clock } from 'lucide-react'
+import SectionHeader from '@/components/ui/SectionHeader'
 
 const stats = [
-  { icon: Briefcase, value: 100, suffix: '+', label: 'Projects Completed', color: 'text-purple-400' },
-  { icon: Users, value: 80, suffix: '+', label: 'Happy Clients', color: 'text-orange-400' },
-  { icon: TrendingUp, value: 240, suffix: '%', label: 'Avg Conversion Growth', color: 'text-pink-400' },
-  { icon: Clock, value: 5, suffix: '+', label: 'Years of Experience', color: 'text-blue-400' },
+  { icon: Briefcase, value: 100, suffix: '+', label: 'Projects Completed', iconBg: 'bg-violet-100 text-violet-600' },
+  { icon: Users, value: 80, suffix: '+', label: 'Happy Clients', iconBg: 'bg-blue-100 text-blue-600' },
+  { icon: TrendingUp, value: 240, suffix: '%', label: 'Avg Conversion Growth', iconBg: 'bg-indigo-100 text-indigo-600' },
+  { icon: Clock, value: 5, suffix: '+', label: 'Years of Experience', iconBg: 'bg-purple-100 text-purple-600' },
 ]
 
 function CountUp({ end, suffix }: { end: number; suffix: string }) {
@@ -33,31 +34,25 @@ function CountUp({ end, suffix }: { end: number; suffix: string }) {
     return () => clearInterval(timer)
   }, [inView, end])
 
-  return <span ref={ref}>{count}{suffix}</span>
+  return (
+    <span ref={ref} className="text-gradient">
+      {count}
+      {suffix}
+    </span>
+  )
 }
 
 export default function StatsCounter() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-purple-900/10 rounded-full blur-[140px]" />
-      </div>
-
+    <section className="py-24 sm:py-28 relative overflow-hidden section-alt">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-14"
-        >
-          <p className="section-label mb-3">Our Impact</p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold">Stats Counter</h2>
-          <p className="text-white/50 mt-4 max-w-xl mx-auto">
-            Numbers that speak louder than words — real results for real businesses.
-          </p>
-        </motion.div>
+        <SectionHeader
+          label="Our Impact"
+          title="Stats Counter"
+          description="Numbers that speak louder than words — real results for real businesses."
+        />
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -65,15 +60,15 @@ export default function StatsCounter() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="rounded-2xl p-7 border border-white/8 bg-[#0f0c1a] text-center card-hover group"
+              className="rounded-premium p-8 bg-white border border-gray-100 shadow-soft card-hover text-center"
             >
-              <div className={`w-12 h-12 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform`}>
-                <s.icon className={`w-6 h-6 ${s.color}`} />
+              <div className={`w-14 h-14 rounded-2xl ${s.iconBg} flex items-center justify-center mx-auto mb-5`}>
+                <s.icon className="w-7 h-7" />
               </div>
-              <p className={`font-display text-4xl font-bold ${s.color} mb-2`}>
+              <p className="font-display text-4xl font-bold mb-2">
                 <CountUp end={s.value} suffix={s.suffix} />
               </p>
-              <p className="text-white/50 text-sm">{s.label}</p>
+              <p className="text-text-secondary text-sm">{s.label}</p>
             </motion.div>
           ))}
         </div>

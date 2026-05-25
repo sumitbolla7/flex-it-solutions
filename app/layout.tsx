@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Outfit } from 'next/font/google'
 import './globals.css'
+import CursorGlow from '@/components/ui/CursorGlow'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -35,7 +36,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <body>{children}</body>
+      <body className="bg-white text-text-primary antialiased">
+        <CursorGlow />
+        {children}
+      </body>
     </html>
   )
 }

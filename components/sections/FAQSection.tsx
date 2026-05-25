@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Plus, Minus } from 'lucide-react'
+import SectionHeader from '@/components/ui/SectionHeader'
 
 const faqs = [
   {
@@ -43,49 +44,46 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-900/8 rounded-full blur-[140px] pointer-events-none" />
+    <section className="py-24 sm:py-28 relative overflow-hidden bg-white">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <SectionHeader
+          label="Got Questions?"
+          title="Frequently Asked Questions"
+          description="Quick answers to the questions we hear most often from clients."
+        />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="section-label mb-3">Got Questions?</p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold">Frequently Asked Questions</h2>
-          <p className="text-white/50 mt-4 max-w-xl mx-auto">
-            Quick answers to the questions we hear most often from clients.
-          </p>
-        </motion.div>
-
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className={`rounded-xl border transition-all duration-300 overflow-hidden ${
+              transition={{ delay: i * 0.04 }}
+              className={`rounded-premium border overflow-hidden transition-all duration-300 ${
                 open === i
-                  ? 'border-purple-500/40 bg-[#130e20]'
-                  : 'border-white/8 bg-[#0f0c1a] hover:border-white/15'
+                  ? 'border-violet-200 bg-violet-50/30 shadow-soft'
+                  : 'border-gray-100 bg-white shadow-soft hover:border-gray-200'
               }`}
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left"
+                className="w-full flex items-center justify-between px-6 sm:px-8 py-5 sm:py-6 text-left gap-4"
               >
-                <span className={`font-medium text-sm sm:text-base ${open === i ? 'text-white' : 'text-white/80'}`}>
+                <span
+                  className={`font-medium text-sm sm:text-base pr-4 ${
+                    open === i ? 'text-text-primary' : 'text-text-secondary'
+                  }`}
+                >
                   {faq.q}
                 </span>
-                <ChevronDown
-                  className={`w-5 h-5 flex-shrink-0 ml-4 transition-transform duration-300 ${
-                    open === i ? 'rotate-180 text-purple-400' : 'text-white/40'
+                <span
+                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+                    open === i ? 'bg-violet-100 text-accent-violet' : 'bg-gray-100 text-text-secondary'
                   }`}
-                />
+                >
+                  {open === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                </span>
               </button>
 
               <AnimatePresence initial={false}>
@@ -94,10 +92,10 @@ export default function FAQSection() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
-                    <div className="px-6 pb-5">
-                      <p className="text-white/55 text-sm leading-relaxed">{faq.a}</p>
+                    <div className="px-6 sm:px-8 pb-6 pt-0">
+                      <p className="text-text-secondary text-sm sm:text-base leading-relaxed">{faq.a}</p>
                     </div>
                   </motion.div>
                 )}
@@ -106,22 +104,20 @@ export default function FAQSection() {
           ))}
         </div>
 
-        <motion.div
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-10"
+          className="text-center text-text-secondary text-sm mt-10"
         >
-          <p className="text-white/40 text-sm">
-            Still have questions?{' '}
-            <button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-purple-400 hover:text-purple-300 underline underline-offset-2"
-            >
-              Contact us directly
-            </button>
-          </p>
-        </motion.div>
+          Still have questions?{' '}
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="text-accent-violet hover:text-accent-blue font-medium underline underline-offset-2"
+          >
+            Contact us directly
+          </button>
+        </motion.p>
       </div>
     </section>
   )

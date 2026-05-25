@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Zap } from 'lucide-react'
+import PremiumButton from '@/components/ui/PremiumButton'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -10,7 +11,7 @@ const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'Blog', href: '#' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -20,14 +21,13 @@ export default function Navbar() {
   const [active, setActive] = useState('home')
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30)
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const handleNav = (href: string) => {
     setMenuOpen(false)
-    if (href === '#') return
     const id = href.replace('#', '')
     const el = document.getElementById(id)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
@@ -40,84 +40,80 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'glass border-b border-[rgba(139,92,246,0.15)] py-3' : 'py-5'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-          {/* Logo */}
-          <button onClick={() => handleNav('#home')} className="flex items-center gap-2 group">
-            <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-orange-500 flex items-center justify-center">
+          <button onClick={() => handleNav('#home')} className="flex items-center gap-2.5 group">
+            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-accent-violet to-accent-blue flex items-center justify-center shadow-soft group-hover:shadow-glow transition-shadow">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="font-display font-bold text-lg tracking-tight">
+            <span className="font-display font-bold text-lg tracking-tight text-text-primary">
               FLEX <span className="text-gradient">IT</span>
             </span>
           </button>
 
-          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => handleNav(link.href)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  active === link.href.replace('#', '')
-                    ? 'text-white bg-white/5'
-                    : 'text-white/60 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const id = link.href.replace('#', '')
+              const isActive = active === id
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => handleNav(link.href)}
+                  className={`nav-link px-4 py-2.5 rounded-xl text-sm font-medium transition-colors duration-300 ${
+                    isActive
+                      ? 'text-text-primary active'
+                      : 'text-text-secondary hover:text-text-primary'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              )
+            })}
           </div>
 
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => handleNav('#contact')}
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-orange-500 text-white text-sm font-semibold hover:opacity-90 transition-opacity"
-            >
+          <div className="hidden md:block">
+            <PremiumButton onClick={() => handleNav('#contact')} size="md">
               Book a Free Call
-            </button>
+            </PremiumButton>
           </div>
 
-          {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition"
+            className="md:hidden p-2.5 rounded-xl text-text-primary hover:bg-gray-100 transition"
+            aria-label="Toggle menu"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[64px] left-0 right-0 z-40 glass border-b border-[rgba(139,92,246,0.15)] p-4 md:hidden"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.25 }}
+            className="fixed top-[72px] left-4 right-4 z-40 glass rounded-2xl p-4 md:hidden shadow-card"
           >
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => handleNav(link.href)}
-                  className="px-4 py-3 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 text-left transition"
+                  className="px-4 py-3.5 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-gray-50 text-left transition"
                 >
                   {link.label}
                 </button>
               ))}
-              <button
-                onClick={() => handleNav('#contact')}
-                className="mt-2 px-5 py-3 rounded-full bg-gradient-to-r from-purple-600 to-orange-500 text-white text-sm font-semibold"
-              >
-                Book a Free Call
-              </button>
+              <div className="mt-3 pt-3 border-t border-gray-100">
+                <PremiumButton onClick={() => handleNav('#contact')} className="w-full">
+                  Book a Free Call
+                </PremiumButton>
+              </div>
             </div>
           </motion.div>
         )}

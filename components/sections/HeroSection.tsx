@@ -1,11 +1,24 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Play, TrendingUp, Zap } from 'lucide-react'
+import { ArrowRight, Play, TrendingUp, Zap, Sparkles } from 'lucide-react'
+import PremiumButton from '@/components/ui/PremiumButton'
+import GradientBlob from '@/components/ui/GradientBlob'
+import GridBackground from '@/components/ui/GridBackground'
+import FloatingParticles from '@/components/ui/FloatingParticles'
 
-const stats = [
-  { label: 'Lead Gen', value: '+315%', icon: TrendingUp },
-  { label: 'Fast Load', value: '52%', icon: Zap },
+const floatingCards = [
+  { top: '8%', left: '-2%', label: 'Lead Gen', val: '+315%', delay: 0.5 },
+  { top: '12%', right: '-2%', label: 'Fast Load', val: '52%', delay: 0.6 },
+  { bottom: '18%', left: '0%', label: 'Projects', val: '100+', delay: 0.7 },
+  { bottom: '14%', right: '0%', label: 'Clients', val: '80+', delay: 0.8 },
+]
+
+const heroStats = [
+  { n: '100+', label: 'Projects Delivered' },
+  { n: '80+', label: 'Happy Clients' },
+  { n: '5+', label: 'Years Experience' },
+  { n: '99%', label: 'Satisfaction Rate' },
 ]
 
 export default function HeroSection() {
@@ -16,34 +29,32 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16 bg-white"
     >
-      {/* Background glows */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/15 rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[150px]" />
-      </div>
+      <GridBackground />
+      <GradientBlob className="top-20 -left-32" color="purple" size="lg" />
+      <GradientBlob className="bottom-20 -right-32" color="blue" size="lg" />
+      <FloatingParticles />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-purple-500/30 text-sm text-purple-300 font-medium mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-violet-100 text-sm font-medium text-accent-violet mb-8"
             >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Available for new projects
+              <Sparkles className="w-4 h-4" />
+              <span>Available for new projects</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6"
+              className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight text-text-primary mb-6"
             >
               Premium{' '}
               <span className="block">Web Design</span>
@@ -54,7 +65,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-white/60 text-lg leading-relaxed mb-10 max-w-md"
+              className="text-text-secondary text-lg sm:text-xl leading-relaxed mb-10 max-w-lg"
             >
               We create modern websites that increase trust, conversions, and
               brand value. Based in Pune, serving clients worldwide.
@@ -66,61 +77,40 @@ export default function HeroSection() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
-              <button
-                onClick={() => scrollTo('contact')}
-                className="px-7 py-3.5 rounded-full bg-gradient-to-r from-purple-600 to-orange-500 text-white font-semibold text-sm hover:opacity-90 transition-opacity flex items-center gap-2"
-              >
+              <PremiumButton onClick={() => scrollTo('contact')} size="lg">
                 Book a Free Call
                 <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => scrollTo('portfolio')}
-                className="px-7 py-3.5 rounded-full glass border border-white/10 text-white font-semibold text-sm hover:bg-white/5 transition flex items-center gap-2"
-              >
-                <Play className="w-4 h-4 fill-white" />
+              </PremiumButton>
+              <PremiumButton onClick={() => scrollTo('portfolio')} variant="secondary" size="lg">
+                <Play className="w-4 h-4 text-accent-violet" />
                 View Portfolio
-              </button>
+              </PremiumButton>
             </motion.div>
           </div>
 
-          {/* Right — abstract orb + floating stats */}
-          <div className="relative flex justify-center items-center h-[480px]">
-            {/* Orb */}
+          <div className="relative flex justify-center items-center h-[420px] sm:h-[480px]">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative w-72 h-72 animate-float"
+              className="relative w-64 h-64 sm:w-72 sm:h-72 animate-float"
             >
-              {/* Outer ring */}
-              <div className="absolute inset-0 rounded-full border border-purple-500/20 animate-ping-slow" />
-              <div className="absolute inset-4 rounded-full border border-orange-500/20 animate-ping-slow" style={{ animationDelay: '1s' }} />
-              {/* Core */}
-              <div className="absolute inset-8 rounded-full bg-gradient-to-br from-purple-600 via-purple-800 to-black opacity-90" />
-              <div className="absolute inset-12 rounded-full bg-gradient-to-br from-orange-500/30 to-purple-600/30 blur-xl" />
-              {/* Center icon */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-orange-500 flex items-center justify-center shadow-lg rotate-12">
+              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-violet-100 to-blue-50 border border-violet-100/80 shadow-glow-lg" />
+              <div className="absolute inset-4 rounded-[1.5rem] bg-white/90 backdrop-blur-sm border border-white shadow-card flex items-center justify-center">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-violet to-accent-blue flex items-center justify-center shadow-glow rotate-3">
                   <Zap className="w-10 h-10 text-white" />
                 </div>
               </div>
-              {/* Glow */}
-              <div className="absolute inset-0 rounded-full bg-purple-600/20 blur-3xl -z-10" />
+              <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-violet-400/20 to-blue-400/20 blur-2xl -z-10" />
             </motion.div>
 
-            {/* Floating stat cards */}
-            {[
-              { top: '10%', left: '-5%', label: 'Lead Gen', val: '+315%', color: 'from-purple-600/20 to-purple-600/5' },
-              { top: '10%', right: '-5%', label: 'Fast Load', val: '52%', color: 'from-orange-600/20 to-orange-600/5' },
-              { bottom: '15%', left: '5%', label: 'Projects Done', val: '100+', color: 'from-pink-600/20 to-pink-600/5' },
-              { bottom: '15%', right: '5%', label: 'Happy Clients', val: '80+', color: 'from-blue-600/20 to-blue-600/5' },
-            ].map((card, i) => (
+            {floatingCards.map((card, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                className={`absolute glass rounded-xl px-4 py-3 border border-white/10 bg-gradient-to-br ${card.color}`}
+                transition={{ duration: 0.5, delay: card.delay }}
+                className="absolute glass rounded-2xl px-4 py-3 border border-gray-100 shadow-soft min-w-[120px]"
                 style={{
                   top: card.top,
                   left: card.left,
@@ -128,29 +118,23 @@ export default function HeroSection() {
                   bottom: card.bottom,
                 }}
               >
-                <p className="text-xl font-bold font-display text-white">{card.val}</p>
-                <p className="text-xs text-white/50 mt-0.5">{card.label}</p>
+                <p className="text-xl font-bold font-display text-gradient">{card.val}</p>
+                <p className="text-xs text-text-secondary mt-0.5">{card.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Bottom trust line */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="mt-16 flex flex-wrap gap-8 items-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mt-16 pt-10 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-8"
         >
-          {[
-            { n: '100+', label: 'Projects Delivered' },
-            { n: '80+', label: 'Happy Clients' },
-            { n: '5+', label: 'Years Experience' },
-            { n: '99%', label: 'Satisfaction Rate' },
-          ].map((s) => (
-            <div key={s.n} className="flex items-center gap-3">
-              <span className="font-display text-2xl font-bold text-gradient">{s.n}</span>
-              <span className="text-white/50 text-sm">{s.label}</span>
+          {heroStats.map((s) => (
+            <div key={s.n} className="text-center sm:text-left">
+              <span className="font-display text-2xl sm:text-3xl font-bold text-gradient block">{s.n}</span>
+              <span className="text-text-secondary text-sm mt-1 block">{s.label}</span>
             </div>
           ))}
         </motion.div>

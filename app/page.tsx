@@ -12,28 +12,38 @@ import CaseStudiesSection from '@/components/sections/CaseStudiesSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import ProcessSection from '@/components/sections/ProcessSection'
 import PricingSection from '@/components/sections/PricingSection'
+import BlogSection from '@/components/sections/BlogSection'
 import FAQSection from '@/components/sections/FAQSection'
 import ContactSection from '@/components/sections/ContactSection'
 import NewsletterSection from '@/components/sections/NewsletterSection'
 import Footer from '@/components/sections/Footer'
+import SectionDivider from '@/components/ui/SectionDivider'
 
 export default function Home() {
   return (
-    <main className="relative bg-[#08060e] min-h-screen overflow-x-hidden">
+    <main className="relative bg-white min-h-screen overflow-x-hidden">
       <Navbar />
       <HeroSection />
       <TrustedBy />
+      <SectionDivider />
       <ServicesSection />
+      <SectionDivider />
       <AboutSection />
       <WhyChooseUs />
       <StatsCounter />
+      <SectionDivider />
       <IndustriesSection />
       <TechnologiesSection />
+      <SectionDivider />
       <PortfolioSection />
       <CaseStudiesSection />
+      <SectionDivider />
       <TestimonialsSection />
       <ProcessSection />
+      <SectionDivider />
       <PricingSection />
+      <BlogSection />
+      <SectionDivider />
       <FAQSection />
       <ContactSection />
       <NewsletterSection />
