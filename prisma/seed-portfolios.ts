@@ -29,7 +29,20 @@ try {
 
 const prisma = new PrismaClient()
 
+// Seeding with descending createdAt dates to enforce exact visual ordering
 const portfoliosData = [
+  {
+    name: 'The Top Percentile',
+    slug: 'the-toppercentile',
+    category: 'EdTech Platform',
+    liveUrl: 'https://thetoppercentile.co.in',
+    shortDescription: 'A premium, high-performance educational portal with online courses, dashboard utilities, and fast page loads.',
+    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Node.js'],
+    thumbnail: '/portfolio/thetoppercentile.png',
+    featured: true,
+    published: true,
+    createdAt: new Date('2026-06-12T10:00:00Z')
+  },
   {
     name: 'Nalvik',
     slug: 'nalvik',
@@ -37,9 +50,10 @@ const portfoliosData = [
     liveUrl: 'https://nalvik.com',
     shortDescription: 'A premium SaaS landing page featuring a clean, responsive layout, dark theme UI, and optimized registration funnel.',
     technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Prisma'],
-    thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    thumbnail: '/portfolio/nalvik.png',
     featured: true,
-    published: true
+    published: true,
+    createdAt: new Date('2026-06-12T09:00:00Z')
   },
   {
     name: 'ChoiceTime',
@@ -50,18 +64,8 @@ const portfoliosData = [
     technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'React'],
     thumbnail: '/portfolio/choicetime.png',
     featured: true,
-    published: true
-  },
-  {
-    name: 'The Top Percentile',
-    slug: 'the-toppercentile',
-    category: 'EdTech Platform',
-    liveUrl: 'https://thetoppercentile.co.in',
-    shortDescription: 'A modern, high-performance educational portal with online courses, dashboard utilities, and fast page loads.',
-    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Node.js'],
-    thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
-    featured: true,
-    published: true
+    published: true,
+    createdAt: new Date('2026-06-12T08:00:00Z')
   },
   {
     name: 'HotGadget',
@@ -72,7 +76,8 @@ const portfoliosData = [
     technologies: ['Next.js', 'Tailwind CSS', 'Shopify API', 'React'],
     thumbnail: '/portfolio/hotgadget.png',
     featured: true,
-    published: true
+    published: true,
+    createdAt: new Date('2026-06-12T07:00:00Z')
   },
   {
     name: 'Product Design Portfolio',
@@ -83,7 +88,8 @@ const portfoliosData = [
     technologies: ['Figma', 'UI/UX Research', 'Wireframing', 'Product Strategy'],
     thumbnail: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80',
     featured: true,
-    published: true
+    published: true,
+    createdAt: new Date('2026-06-12T06:00:00Z')
   },
   {
     name: 'UI/UX Development Portfolio',
@@ -94,7 +100,8 @@ const portfoliosData = [
     technologies: ['UI/UX Design', 'Figma', 'Branding', 'Visual Identity'],
     thumbnail: 'https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&w=800&q=80',
     featured: true,
-    published: true
+    published: true,
+    createdAt: new Date('2026-06-12T05:00:00Z')
   }
 ]
 
@@ -102,12 +109,12 @@ async function main() {
   console.log('Clearing existing portfolios...')
   await prisma.portfolio.deleteMany({})
 
-  console.log('Seeding portfolio items...')
+  console.log('Seeding portfolio items in specific order...')
   for (const item of portfoliosData) {
     const res = await prisma.portfolio.create({
       data: item
     })
-    console.log(`Created portfolio item: ${res.name} (slug: ${res.slug})`)
+    console.log(`Created portfolio item: ${res.name} (slug: ${res.slug}, orderDate: ${res.createdAt.toISOString()})`)
   }
   console.log('Seeding finished successfully!')
 }

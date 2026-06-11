@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
 import PremiumButton from '@/components/ui/PremiumButton'
+import TechBadge from '@/components/ui/TechBadge'
 import { getPortfolioBySlug } from '@/lib/actions/portfolio'
 import { ArrowLeft, ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
@@ -50,11 +51,9 @@ export default async function PortfolioCaseStudyPage({ params }: { params: { slu
         <p className="text-xl text-text-secondary leading-relaxed mb-8">{project.shortDescription}</p>
 
         {project.technologies.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-10">
+          <div className="flex flex-wrap gap-2.5 mb-10">
             {project.technologies.map((tech) => (
-              <span key={tech} className="px-3 py-1 rounded-full bg-violet-50 text-accent-violet text-sm font-medium border border-violet-100">
-                {tech}
-              </span>
+              <TechBadge key={tech} name={tech} />
             ))}
           </div>
         )}

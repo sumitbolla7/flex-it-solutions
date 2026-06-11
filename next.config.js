@@ -6,6 +6,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'www.choicetime.in' },
       { protocol: 'https', hostname: 'nalvik.com' },
       { protocol: 'https', hostname: 'thetoppercentile.co.in' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
 }
