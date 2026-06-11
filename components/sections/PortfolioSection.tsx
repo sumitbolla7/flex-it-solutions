@@ -1,50 +1,79 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import Image from 'next/image'
 import { ExternalLink, Plus, ArrowUpRight } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import GradientBlob from '@/components/ui/GradientBlob'
 import PremiumButton from '@/components/ui/PremiumButton'
+import type { Portfolio } from '@prisma/client'
 
-const projects = [
+const staticProjects = [
   {
     name: 'ChoiceTime',
-    url: 'https://www.choicetime.in',
-    desc: 'Premium web design agency landing page with 3D visuals and conversion-focused layout.',
-    tag: 'Agency Website',
-    gradient: 'from-violet-100 to-blue-50',
-    accent: '#7c3aed',
+    slug: 'choicetime',
+    liveUrl: 'https://www.choicetime.in',
+    shortDescription: 'Premium web design agency landing page with 3D visuals and conversion-focused layout.',
+    category: 'Agency Website',
+    thumbnail: null as string | null,
+    placeholder: false,
   },
   {
     name: 'Nalvik',
-    url: 'https://nalvik.com',
-    desc: 'SaaS product website with clean UI, feature showcase, and optimized onboarding flow.',
-    tag: 'SaaS / Product',
-    gradient: 'from-blue-100 to-cyan-50',
-    accent: '#2563eb',
+    slug: 'nalvik',
+    liveUrl: 'https://nalvik.com',
+    shortDescription: 'SaaS product website with clean UI, feature showcase, and optimized onboarding flow.',
+    category: 'SaaS / Product',
+    thumbnail: null,
+    placeholder: false,
   },
   {
     name: 'The Top Percentile',
-    url: 'https://thetoppercentile.co.in',
-    desc: 'EdTech platform with course listings, student portal, and performance-first architecture.',
-    tag: 'EdTech Platform',
-    gradient: 'from-emerald-100 to-teal-50',
-    accent: '#059669',
-  },
-  {
-    name: 'Upcoming Project',
-    url: '',
-    desc: 'Your project could be featured here. Book a free consultation to get started.',
-    tag: 'Available',
-    gradient: 'from-gray-50 to-gray-100',
-    accent: '#6b7280',
-    placeholder: true,
+    slug: 'the-top-percentile',
+    liveUrl: 'https://thetoppercentile.co.in',
+    shortDescription: 'EdTech platform with course listings, student portal, and performance-first architecture.',
+    category: 'EdTech Platform',
+    thumbnail: null,
+    placeholder: false,
   },
 ]
 
-export default function PortfolioSection() {
+const accents = ['#7c3aed', '#2563eb', '#059669', '#6b7280']
+
+interface PortfolioSectionProps {
+  projects?: Portfolio[]
+}
+
+export default function PortfolioSection({ projects: cmsProjects = [] }: PortfolioSectionProps) {
   const scrollToContact = () =>
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+
+  const items =
+    cmsProjects.length > 0
+      ? cmsProjects.map((p, i) => ({
+          name: p.name,
+          slug: p.slug,
+          liveUrl: p.liveUrl || '',
+          shortDescription: p.shortDescription,
+          category: p.category || 'Project',
+          thumbnail: p.thumbnail,
+          placeholder: false,
+          accent: accents[i % accents.length],
+        }))
+      : [
+          ...staticProjects.map((p, i) => ({ ...p, accent: accents[i] })),
+          {
+            name: 'Upcoming Project',
+            slug: '',
+            liveUrl: '',
+            shortDescription: 'Your project could be featured here. Book a free consultation to get started.',
+            category: 'Available',
+            thumbnail: null,
+            placeholder: true,
+            accent: '#6b7280',
+          },
+        ]
 
   return (
     <section id="portfolio" className="py-24 sm:py-28 relative overflow-hidden section-alt">
@@ -58,16 +87,16 @@ export default function PortfolioSection() {
         />
 
         <div className="grid sm:grid-cols-2 gap-8">
-          {projects.map((proj, i) => (
+          {items.map((proj, i) => (
             <motion.article
-              key={proj.name}
+              key={proj.slug || proj.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="group relative rounded-premium overflow-hidden bg-white border border-gray-100 shadow-soft card-hover"
             >
-              <div className={`relative h-56 sm:h-64 overflow-hidden bg-gradient-to-br ${proj.gradient}`}>
+              <div className="relative h-56 sm:h-64 overflow-hidden bg-gradient-to-br from-violet-50 to-blue-50">
                 {proj.placeholder ? (
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-text-secondary">
                     <Plus className="w-14 h-14 mb-3 opacity-40" />
@@ -75,23 +104,19 @@ export default function PortfolioSection() {
                   </div>
                 ) : (
                   <>
-                    <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-                      <p
-                        className="font-display text-4xl sm:text-5xl font-bold opacity-90"
-                        style={{ color: proj.accent }}
-                      >
-                        {proj.name}
-                      </p>
-                    </div>
+                    {proj.thumbnail ? (
+                      <Image src={proj.thumbnail} alt={proj.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                        <p className="font-display text-4xl sm:text-5xl font-bold opacity-90" style={{ color: proj.accent }}>
+                          {proj.name}
+                        </p>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-6">
-                      <span className="text-white text-sm font-medium">{proj.url}</span>
-                      {!proj.placeholder && (
-                        <a
-                          href={proj.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition"
-                        >
+                      {proj.liveUrl && <span className="text-white text-sm font-medium">{proj.liveUrl}</span>}
+                      {proj.liveUrl && (
+                        <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-white">
                           <ExternalLink className="w-4 h-4" />
                         </a>
                       )}
@@ -103,40 +128,29 @@ export default function PortfolioSection() {
               <div className="p-6 sm:p-7">
                 <span
                   className="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3"
-                  style={{
-                    color: proj.accent,
-                    backgroundColor: `${proj.accent}12`,
-                    border: `1px solid ${proj.accent}25`,
-                  }}
+                  style={{ color: proj.accent, backgroundColor: `${proj.accent}12`, border: `1px solid ${proj.accent}25` }}
                 >
-                  {proj.tag}
+                  {proj.category}
                 </span>
                 <h3 className="font-display text-xl font-bold text-text-primary mb-2">{proj.name}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed mb-5">{proj.desc}</p>
+                <p className="text-text-secondary text-sm leading-relaxed mb-5">{proj.shortDescription}</p>
 
                 {proj.placeholder ? (
                   <PremiumButton onClick={scrollToContact} variant="secondary" size="sm">
-                    Start Your Project
-                    <ArrowUpRight className="w-4 h-4" />
+                    Start Your Project <ArrowUpRight className="w-4 h-4" />
                   </PremiumButton>
                 ) : (
-                  <div className="flex gap-3">
-                    <a
-                      href={proj.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-accent-violet hover:text-accent-blue transition"
-                    >
-                      View Live Site
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                    <button
-                      onClick={scrollToContact}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-text-secondary hover:text-text-primary transition"
-                    >
-                      Case Study
-                      <ArrowUpRight className="w-4 h-4" />
-                    </button>
+                  <div className="flex gap-3 flex-wrap">
+                    {proj.liveUrl && (
+                      <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-accent-violet hover:text-accent-blue transition">
+                        View Live Site <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
+                    {proj.slug && (
+                      <Link href={`/portfolio/${proj.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-text-secondary hover:text-text-primary transition">
+                        Case Study <ArrowUpRight className="w-4 h-4" />
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>

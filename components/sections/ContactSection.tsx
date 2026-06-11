@@ -29,9 +29,23 @@ export default function ContactSection() {
     setErrors(e)
     if (Object.keys(e).length > 0) return
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1500))
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setErrors({ message: data.error || 'Failed to send' })
+        setLoading(false)
+        return
+      }
+      setSubmitted(true)
+    } catch {
+      setErrors({ message: 'Network error. Please try again.' })
+    }
     setLoading(false)
-    setSubmitted(true)
   }
 
   const inputClass = (field: string) =>
@@ -115,6 +129,7 @@ export default function ContactSection() {
                   />
                   {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                 </div>
+                {errors.message && <p className="text-red-500 text-xs">{errors.message}</p>}
                 <PremiumButton onClick={handleSubmit} disabled={loading} className="w-full">
                   {loading ? (
                     <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

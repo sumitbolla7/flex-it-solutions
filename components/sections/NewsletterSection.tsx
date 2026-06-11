@@ -22,9 +22,23 @@ export default function NewsletterSection() {
     }
     setError('')
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1000))
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error || 'Subscription failed')
+        setLoading(false)
+        return
+      }
+      setSubmitted(true)
+    } catch {
+      setError('Network error. Please try again.')
+    }
     setLoading(false)
-    setSubmitted(true)
   }
 
   return (

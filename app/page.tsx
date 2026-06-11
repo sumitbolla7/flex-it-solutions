@@ -18,8 +18,15 @@ import ContactSection from '@/components/sections/ContactSection'
 import NewsletterSection from '@/components/sections/NewsletterSection'
 import Footer from '@/components/sections/Footer'
 import SectionDivider from '@/components/ui/SectionDivider'
+import { getPublishedBlogs, getPublishedPortfolio, getPublishedTestimonials } from '@/lib/data'
 
-export default function Home() {
+export default async function Home() {
+  const [blogs, portfolio, testimonialData] = await Promise.all([
+    getPublishedBlogs(),
+    getPublishedPortfolio(),
+    getPublishedTestimonials(),
+  ])
+
   return (
     <main className="relative bg-white min-h-screen overflow-x-hidden">
       <Navbar />
@@ -35,14 +42,18 @@ export default function Home() {
       <IndustriesSection />
       <TechnologiesSection />
       <SectionDivider />
-      <PortfolioSection />
+      <PortfolioSection projects={portfolio} />
       <CaseStudiesSection />
       <SectionDivider />
-      <TestimonialsSection />
+      <TestimonialsSection
+        testimonials={testimonialData.testimonials}
+        title={testimonialData.title}
+        subtitle={testimonialData.subtitle}
+      />
       <ProcessSection />
       <SectionDivider />
       <PricingSection />
-      <BlogSection />
+      <BlogSection blogs={blogs} />
       <SectionDivider />
       <FAQSection />
       <ContactSection />

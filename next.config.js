@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['www.choicetime.in', 'nalvik.com', 'thetoppercentile.co.in'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'www.choicetime.in' },
+      { protocol: 'https', hostname: 'nalvik.com' },
+      { protocol: 'https', hostname: 'thetoppercentile.co.in' },
+    ],
   },
 }
 
