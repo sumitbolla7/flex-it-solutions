@@ -97,8 +97,8 @@ export default function HeroSection() {
             >
               <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-violet-100 to-blue-50 border border-violet-100/80 shadow-glow-lg" />
               <div className="absolute inset-4 rounded-[1.5rem] bg-white/90 backdrop-blur-sm border border-white shadow-card flex items-center justify-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-violet to-accent-blue flex items-center justify-center shadow-glow rotate-3">
-                  <Zap className="w-10 h-10 text-white" />
+                <div className="w-20 h-20 flex items-center justify-center rotate-3 transition-transform hover:scale-105">
+                  <img src="/logo.svg" alt="FLEX IT logo" className="w-full h-full object-contain" />
                 </div>
               </div>
               <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-violet-400/20 to-blue-400/20 blur-2xl -z-10" />

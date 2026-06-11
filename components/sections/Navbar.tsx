@@ -46,8 +46,8 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           <button onClick={() => handleNav('#home')} className="flex items-center gap-2.5 group">
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-accent-violet to-accent-blue flex items-center justify-center shadow-soft group-hover:shadow-glow transition-shadow">
-              <Zap className="w-4 h-4 text-white" />
+            <div className="relative w-9 h-9 flex items-center justify-center transition-transform group-hover:scale-105">
+              <img src="/logo.svg" alt="FLEX IT logo" className="w-full h-full object-contain" />
             </div>
             <span className="font-display font-bold text-lg tracking-tight text-text-primary">
               FLEX <span className="text-gradient">IT</span>

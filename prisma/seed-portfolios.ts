@@ -31,6 +31,39 @@ const prisma = new PrismaClient()
 
 const portfoliosData = [
   {
+    name: 'Nalvik',
+    slug: 'nalvik',
+    category: 'SaaS / Product',
+    liveUrl: 'https://nalvik.com',
+    shortDescription: 'A premium SaaS landing page featuring a clean, responsive layout, dark theme UI, and optimized registration funnel.',
+    technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Prisma'],
+    thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    featured: true,
+    published: true
+  },
+  {
+    name: 'ChoiceTime',
+    slug: 'choicetime',
+    category: 'eCommerce / Watch Store',
+    liveUrl: 'https://www.choicetime.in/',
+    shortDescription: 'An elegant classic and smart watch storefront featuring 3D visuals, high-converting product pages, and dynamic reviews.',
+    technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'React'],
+    thumbnail: '/portfolio/choicetime.png',
+    featured: true,
+    published: true
+  },
+  {
+    name: 'The Top Percentile',
+    slug: 'the-toppercentile',
+    category: 'EdTech Platform',
+    liveUrl: 'https://thetoppercentile.co.in',
+    shortDescription: 'A modern, high-performance educational portal with online courses, dashboard utilities, and fast page loads.',
+    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Node.js'],
+    thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
+    featured: true,
+    published: true
+  },
+  {
     name: 'HotGadget',
     slug: 'hotgadget',
     category: 'eCommerce / Watch Store',
@@ -42,112 +75,13 @@ const portfoliosData = [
     published: true
   },
   {
-    name: 'TickNTrack',
-    slug: 'tickntrack',
-    category: 'eCommerce / Watch Store',
-    liveUrl: 'https://tickntrack.in',
-    shortDescription: 'An elegant e-commerce site for luxury timepieces with custom order tracking and advanced product filtering.',
-    technologies: ['Next.js', 'Tailwind CSS', 'MongoDB', 'Framer Motion'],
-    thumbnail: '/portfolio/tickntrack.png',
-    featured: true,
-    published: true
-  },
-  {
-    name: 'StyleTrending',
-    slug: 'styletrending',
-    category: 'eCommerce / Fashion',
-    liveUrl: 'https://styletrending.in',
-    shortDescription: 'A highly responsive fashion clothing storefront with immersive visual displays and conversion-optimized checkout.',
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Prisma'],
-    thumbnail: '/portfolio/styletrending.png',
-    featured: true,
-    published: true
-  },
-  {
-    name: 'ChoiceTime',
-    slug: 'choicetime',
-    category: 'eCommerce / Watch Store',
-    liveUrl: 'https://www.choicetime.in/',
-    shortDescription: 'A premium classic and smart watch storefront featuring 3D visuals, high-converting product pages, and dynamic reviews.',
-    technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'React'],
-    thumbnail: '/portfolio/choicetime.png',
-    featured: true,
-    published: true
-  },
-  {
-    name: 'StylishBubbles',
-    slug: 'stylishbubbles',
-    category: 'eCommerce / Fashion',
-    liveUrl: 'https://stylishbubbles.in',
-    shortDescription: 'A trendy apparel and accessories storefront featuring creative bubble-themed layouts and optimized checkout flows.',
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Node.js'],
-    thumbnail: '/portfolio/stylishbubbles.png',
-    featured: false,
-    published: true
-  },
-  {
-    name: 'SaariSanskar',
-    slug: 'saarisanskar',
-    category: 'eCommerce / Ethnic Wear',
-    liveUrl: 'https://saarisanskar.in',
-    shortDescription: 'A beautiful e-commerce platform for ethnic wear and traditional sarees, combining rich heritage visuals with performance.',
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'MongoDB'],
-    thumbnail: '/portfolio/saarisanskar.png',
-    featured: false,
-    published: true
-  },
-  {
-    name: 'DynamicWorld',
-    slug: 'dynamicworld',
-    category: 'Business Website',
-    liveUrl: 'https://dynamicworld.in',
-    shortDescription: 'A corporate service portal and branding showcase for a global digital consultancy and software services agency.',
-    technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
-    thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-    featured: false,
-    published: true
-  },
-  {
-    name: 'DankaChaat',
-    slug: 'dankachaat',
-    category: 'Food & Beverage',
-    liveUrl: 'https://dankachaat.com',
-    shortDescription: 'A delicious online food ordering and delivery web portal for gourmet Indian snacks and street food.',
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Express'],
-    thumbnail: 'https://images.unsplash.com/photo-1601050690597-df056fb4ce78?auto=format&fit=crop&w=800&q=80',
-    featured: false,
-    published: true
-  },
-  {
-    name: 'KidzFa',
-    slug: 'kidzfa',
-    category: 'eCommerce / Kids Wear',
-    liveUrl: 'https://kidzfa.in',
-    shortDescription: 'A playful, secure e-commerce storefront for children\'s fashion wear and accessories.',
-    technologies: ['Next.js', 'Tailwind CSS', 'React', 'Shopify API'],
-    thumbnail: 'https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=800&q=80',
-    featured: false,
-    published: true
-  },
-  {
-    name: 'ShopzyFashion',
-    slug: 'shopzyfashion',
-    category: 'eCommerce / Fashion',
-    liveUrl: 'https://shopzyfashion.in',
-    shortDescription: 'A sleek multi-brand clothing store featuring high-fidelity carousels, size guides, and conversion optimization.',
-    technologies: ['Next.js', 'Tailwind CSS', 'React', 'Prisma'],
-    thumbnail: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
-    featured: false,
-    published: true
-  },
-  {
     name: 'Product Design Portfolio',
     slug: 'product-design-portfolio',
     category: 'Product Design',
     liveUrl: '/portfolio/product-design-portfolio.pdf',
     shortDescription: 'Comprehensive design systems, user journey maps, wireframes, and prototype documentation by Sumit.',
     technologies: ['Figma', 'UI/UX Research', 'Wireframing', 'Product Strategy'],
-    thumbnail: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80',
     featured: true,
     published: true
   },
@@ -158,40 +92,22 @@ const portfoliosData = [
     liveUrl: '/portfolio/ui-ux-development-portfolio.pdf',
     shortDescription: 'Modern branding identity, creative logo design, and high-fidelity typography styles for digital products.',
     technologies: ['UI/UX Design', 'Figma', 'Branding', 'Visual Identity'],
-    thumbnail: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&w=800&q=80',
     featured: true,
     published: true
   }
 ]
 
 async function main() {
+  console.log('Clearing existing portfolios...')
+  await prisma.portfolio.deleteMany({})
+
   console.log('Seeding portfolio items...')
   for (const item of portfoliosData) {
-    const res = await prisma.portfolio.upsert({
-      where: { slug: item.slug },
-      update: {
-        name: item.name,
-        category: item.category,
-        liveUrl: item.liveUrl,
-        shortDescription: item.shortDescription,
-        technologies: item.technologies,
-        thumbnail: item.thumbnail,
-        featured: item.featured,
-        published: item.published
-      },
-      create: {
-        name: item.name,
-        slug: item.slug,
-        category: item.category,
-        liveUrl: item.liveUrl,
-        shortDescription: item.shortDescription,
-        technologies: item.technologies,
-        thumbnail: item.thumbnail,
-        featured: item.featured,
-        published: item.published
-      }
+    const res = await prisma.portfolio.create({
+      data: item
     })
-    console.log(`Upserted portfolio item: ${res.name} (slug: ${res.slug})`)
+    console.log(`Created portfolio item: ${res.name} (slug: ${res.slug})`)
   }
   console.log('Seeding finished successfully!')
 }

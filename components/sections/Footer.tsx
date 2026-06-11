@@ -45,9 +45,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">
           <div className="lg:col-span-2">
-            <button onClick={() => scrollTo('#home')} className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-violet to-accent-blue flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
+            <button onClick={() => scrollTo('#home')} className="flex items-center gap-2.5 mb-5 group">
+              <div className="w-9 h-9 flex items-center justify-center transition-transform group-hover:scale-105">
+                <img src="/logo.svg" alt="FLEX IT logo" className="w-full h-full object-contain" />
               </div>
               <span className="font-display font-bold text-lg">
                 FLEX <span className="text-gradient">IT</span> SOLUTIONS
