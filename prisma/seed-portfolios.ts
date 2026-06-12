@@ -68,18 +68,6 @@ const portfoliosData = [
     createdAt: new Date('2026-06-12T08:00:00Z')
   },
   {
-    name: 'HotGadget',
-    slug: 'hotgadget',
-    category: 'eCommerce / Watch Store',
-    liveUrl: 'https://hotgadget.in',
-    shortDescription: 'A conversion-focused e-commerce storefront for smartwatches and premium gadgets, designed for high performance and trust.',
-    technologies: ['Next.js', 'Tailwind CSS', 'Shopify API', 'React'],
-    thumbnail: '/portfolio/hotgadget.png',
-    featured: true,
-    published: true,
-    createdAt: new Date('2026-06-12T07:00:00Z')
-  },
-  {
     name: 'StylishBubbles',
     slug: 'stylishbubbles',
     category: 'eCommerce / Apparel',
@@ -129,9 +117,65 @@ const portfoliosData = [
   }
 ]
 
+const testimonialsData = [
+  {
+    clientName: 'Dr. Vikram Amale',
+    designation: 'Founder',
+    companyName: 'The Top Percentile',
+    review: 'FLEX IT Solutions built a premium, high-performance educational portal for The Top Percentile. The online course delivery is seamless, and page loads are incredibly fast!',
+    rating: 5,
+    featured: true,
+    published: true,
+    order: 1
+  },
+  {
+    clientName: 'Naveen Rawat',
+    designation: 'Co-Founder',
+    companyName: 'Nalvik',
+    review: 'The SaaS landing page designed by FLEX IT Solutions completely transformed our onboarding process. High-fidelity layouts, dark theme UI, and optimized funnel structure led to a 40% increase in signups!',
+    rating: 5,
+    featured: true,
+    published: true,
+    order: 2
+  },
+  {
+    clientName: 'Rajesh Shah',
+    designation: 'Managing Director',
+    companyName: 'ChoiceTime',
+    review: "ChoiceTime's new e-commerce storefront is spectacular. The watch collections look incredibly premium, and the high-converting checkout flow has boosted our sales significantly.",
+    rating: 5,
+    featured: true,
+    published: true,
+    order: 3
+  },
+  {
+    clientName: 'Preeti Sen',
+    designation: 'Founder',
+    companyName: 'StylishBubbles',
+    review: 'FLEX IT Solutions delivered an elegant, high-converting storefront for StylishBubbles. Our customers love the seamless checkout and clean product presentation.',
+    rating: 5,
+    featured: true,
+    published: true,
+    order: 4
+  },
+  {
+    clientName: 'Ananya Roy',
+    designation: 'Marketing Director',
+    companyName: 'StyleTrending',
+    review: 'The contemporary design and fashion catalog layouts built for StyleTrending are beautiful and easy to manage. A truly professional team!',
+    rating: 5,
+    featured: true,
+    published: true,
+    order: 5
+  }
+]
+
 async function main() {
   console.log('Clearing existing portfolios...')
   await prisma.portfolio.deleteMany({})
+
+  console.log('Clearing existing testimonials...')
+  await prisma.testimonial.deleteMany({})
 
   console.log('Seeding portfolio items in specific order...')
   for (const item of portfoliosData) {
@@ -140,6 +184,15 @@ async function main() {
     })
     console.log(`Created portfolio item: ${res.name} (slug: ${res.slug}, orderDate: ${res.createdAt.toISOString()})`)
   }
+
+  console.log('Seeding testimonials related to portfolio items...')
+  for (const item of testimonialsData) {
+    const res = await prisma.testimonial.create({
+      data: item
+    })
+    console.log(`Created testimonial: ${res.clientName} (${res.companyName})`)
+  }
+
   console.log('Seeding finished successfully!')
 }
 

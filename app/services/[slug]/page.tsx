@@ -31,7 +31,7 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
   let relatedPortfolios: typeof portfolios = []
   if (params.slug === 'ecommerce-development') {
     relatedPortfolios = portfolios.filter(p =>
-      ['choicetime', 'hotgadget', 'stylishbubbles', 'styletrending'].includes(p.slug)
+      ['choicetime', 'stylishbubbles', 'styletrending'].includes(p.slug)
     )
   } else if (params.slug === 'educational-platforms') {
     relatedPortfolios = portfolios.filter(p => ['the-toppercentile'].includes(p.slug))
