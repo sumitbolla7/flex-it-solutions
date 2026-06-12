@@ -80,6 +80,30 @@ const portfoliosData = [
     createdAt: new Date('2026-06-12T07:00:00Z')
   },
   {
+    name: 'StylishBubbles',
+    slug: 'stylishbubbles',
+    category: 'eCommerce / Apparel',
+    liveUrl: 'https://stylishbubbles.in',
+    shortDescription: 'An elegant and premium e-commerce storefront for ethnic apparel and designer wear, featuring a clean layout and seamless shopping experience.',
+    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Shopify'],
+    thumbnail: '/portfolio/stylishbubbles.png',
+    featured: true,
+    published: true,
+    createdAt: new Date('2026-06-12T06:30:00Z')
+  },
+  {
+    name: 'StyleTrending',
+    slug: 'styletrending',
+    category: 'eCommerce / Watches & Fashion',
+    liveUrl: 'https://styletrending.in',
+    shortDescription: 'A contemporary and chic e-commerce store presenting curated watch and fashion collections with high conversion-focused navigation.',
+    technologies: ['WordPress', 'WooCommerce', 'PHP', 'Elementor'],
+    thumbnail: '/portfolio/styletrending.png',
+    featured: true,
+    published: true,
+    createdAt: new Date('2026-06-12T06:00:00Z')
+  },
+  {
     name: 'Product Design Portfolio',
     slug: 'product-design-portfolio',
     category: 'Product Design',
@@ -89,7 +113,7 @@ const portfoliosData = [
     thumbnail: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80',
     featured: true,
     published: true,
-    createdAt: new Date('2026-06-12T06:00:00Z')
+    createdAt: new Date('2026-06-12T05:30:00Z')
   },
   {
     name: 'UI/UX Development Portfolio',
