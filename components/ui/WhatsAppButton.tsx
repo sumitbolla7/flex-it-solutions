@@ -16,13 +16,13 @@ export default function WhatsAppButton() {
   }, [])
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 flex items-center gap-3 select-none">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-row-reverse items-center gap-3 select-none">
       <AnimatePresence>
         {showTooltip && (
           <motion.div
-            initial={{ opacity: 0, x: -15, scale: 0.95 }}
+            initial={{ opacity: 0, x: 15, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -15, scale: 0.95 }}
+            exit={{ opacity: 0, x: 15, scale: 0.95 }}
             className="hidden sm:flex items-center bg-white text-text-primary px-4 py-2.5 rounded-2xl border border-gray-100 shadow-premium text-xs font-semibold whitespace-nowrap relative group"
           >
             <span>Chat with our team! 👋</span>
