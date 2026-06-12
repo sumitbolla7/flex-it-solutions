@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Outfit } from 'next/font/google'
 import './globals.css'
 import CursorGlow from '@/components/ui/CursorGlow'
+import WhatsAppButton from '@/components/ui/WhatsAppButton'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body className="bg-white text-text-primary antialiased">
         <CursorGlow />
+        <WhatsAppButton />
         {children}
       </body>
     </html>

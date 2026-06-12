@@ -122,7 +122,7 @@ const portfoliosData = [
     liveUrl: '/portfolio/ui-ux-development-portfolio.pdf',
     shortDescription: 'Modern branding identity, creative logo design, and high-fidelity typography styles for digital products.',
     technologies: ['UI/UX Design', 'Figma', 'Branding', 'Visual Identity'],
-    thumbnail: 'https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&w=800&q=80',
+    thumbnail: '/portfolio/ui-ux-development-portfolio.png',
     featured: true,
     published: true,
     createdAt: new Date('2026-06-12T05:00:00Z')
