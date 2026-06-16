@@ -20,19 +20,17 @@ async function main() {
   })
 
   const settings = await prisma.siteSettings.findFirst()
-  if (!settings) {
     await prisma.siteSettings.create({
       data: {
         companyName: 'FLEX IT SOLUTIONS',
         email: 'sumitdigitalpartner@gmail.com',
         phone: '+91 9527352323',
-        address: 'Pune, Maharashtra, India',
+        address: 'India',
         testimonialTitle: 'What Clients Say',
         testimonialSubtitle:
           "Hear directly from the clients whose businesses we've helped transform.",
       },
     })
-  }
 
   console.log('✅ Seed complete')
   console.log(`   Admin email: ${email}`)

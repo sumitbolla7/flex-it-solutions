@@ -68,7 +68,7 @@ export default function HeroSection() {
               className="text-text-secondary text-lg sm:text-xl leading-relaxed mb-10 max-w-lg"
             >
               We create modern websites that increase trust, conversions, and
-              brand value. Based in Pune, serving clients worldwide.
+              brand value. Based in India, serving clients worldwide.
             </motion.p>
 
             <motion.div
@@ -97,8 +97,8 @@ export default function HeroSection() {
             >
               <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-violet-100 to-blue-50 border border-violet-100/80 shadow-glow-lg" />
               <div className="absolute inset-4 rounded-[1.5rem] bg-white/90 backdrop-blur-sm border border-white shadow-card flex items-center justify-center">
-                <div className="w-20 h-20 flex items-center justify-center rotate-3 transition-transform hover:scale-105">
-                  <img src="/logo.svg" alt="FLEX IT logo" className="w-full h-full object-contain" />
+                <div className="w-20 h-20 flex items-center justify-center rotate-3 transition-transform hover:scale-105 rounded-xl overflow-hidden">
+                  <img src="/logo.jpeg" alt="FLEX IT SOLUTIONS logo" className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-violet-400/20 to-blue-400/20 blur-2xl -z-10" />

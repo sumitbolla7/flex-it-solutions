@@ -150,22 +150,27 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="flex flex-col gap-5"
           >
-            <div className="flex-1 rounded-premium overflow-hidden border border-gray-100 min-h-[220px] relative shadow-soft">
-              <div className="w-full h-full bg-gradient-to-br from-violet-50 to-blue-50 flex items-center justify-center relative">
-                <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#7c3aed" strokeWidth="0.5" />
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#grid)" />
-                </svg>
-                <div className="relative z-10 flex flex-col items-center gap-2">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-violet to-accent-blue flex items-center justify-center shadow-glow">
-                    <MapPin className="w-5 h-5 text-white" />
+            <div className="flex-1 rounded-premium p-8 bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 text-white relative shadow-soft overflow-hidden flex flex-col justify-between min-h-[220px]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent)]" />
+              <div className="relative z-10 flex flex-col h-full justify-between gap-6">
+                <div>
+                  <h3 className="font-display text-2xl font-bold mb-2">Let&apos;s create something extraordinary together</h3>
+                  <p className="text-white/80 text-sm leading-relaxed">
+                    Have a vision? We have the expertise to bring it to life. Contact us for a free strategy session.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs text-emerald-300">✓</span>
+                    <span className="text-sm text-white/90">Premium high-converting designs</span>
                   </div>
-                  <div className="glass rounded-xl px-4 py-2">
-                    <p className="text-text-primary text-sm font-medium">Pune, Maharashtra</p>
+                  <div className="flex items-center gap-3">
+                    <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs text-emerald-300">✓</span>
+                    <span className="text-sm text-white/90">Fast, responsive & SEO optimized</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs text-emerald-300">✓</span>
+                    <span className="text-sm text-white/90">Reliable communication & updates</span>
                   </div>
                 </div>
               </div>
@@ -200,8 +205,8 @@ export default function ContactSection() {
                     <MapPin className="w-4 h-4 text-indigo-600" />
                   </div>
                   <div>
-                    <p className="text-text-secondary text-xs mb-0.5">Office</p>
-                    <p className="text-text-primary text-sm">Pune, Maharashtra, India</p>
+                    <p className="text-text-secondary text-xs mb-0.5">Location</p>
+                    <p className="text-text-primary text-sm">India / Remote</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

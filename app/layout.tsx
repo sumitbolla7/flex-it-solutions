@@ -17,10 +17,10 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: 'FLEX IT SOLUTIONS — Premium Web Design Agency | Pune',
+  title: 'FLEX IT SOLUTIONS — Premium Web Design Agency',
   description:
-    'We create modern websites that increase trust, conversions, and brand value. E-commerce, educational, business websites & UI/UX design in Pune.',
-  keywords: 'web design agency pune, e-commerce development, educational websites, UI/UX design, website redesign',
+    'We create modern websites that increase trust, conversions, and brand value. E-commerce, educational, business websites & UI/UX design.',
+  keywords: 'web design agency, e-commerce development, educational websites, UI/UX design, website redesign',
   openGraph: {
     title: 'FLEX IT SOLUTIONS — Premium Web Design Agency',
     description: 'We create modern websites that increase trust, conversions, and brand value.',

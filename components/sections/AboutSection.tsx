@@ -44,7 +44,7 @@ export default function AboutSection() {
                     <Users className="w-12 h-12 text-accent-violet" />
                   </div>
                   <p className="text-text-primary font-semibold">FLEX IT SOLUTIONS Team</p>
-                  <p className="text-text-secondary text-sm mt-1">Pune, India</p>
+                  <p className="text-text-secondary text-sm mt-1">India</p>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function AboutSection() {
             <SectionHeader
               label="About Us"
               title="Who We Are"
-              description="FLEX IT SOLUTIONS is a Pune-based premium web design and development agency. We build modern, high-performance websites that amplify brand credibility, capture leads, and drive measurable business growth."
+              description="FLEX IT SOLUTIONS is a premium web design and development agency. We build modern, high-performance websites that amplify brand credibility, capture leads, and drive measurable business growth."
               align="left"
               className="mb-8 !text-left [&_p]:mx-0"
             />

@@ -26,7 +26,7 @@ const footerLinks = {
   'Contact Info': [
     { label: 'sumitdigitalpartner@gmail.com', href: 'mailto:sumitdigitalpartner@gmail.com', icon: Mail },
     { label: '+91 9527352323', href: 'tel:+919527352323', icon: Phone },
-    { label: 'Pune, Maharashtra, India', href: '#contact', icon: MapPin },
+    { label: 'India', href: '#contact', icon: MapPin },
   ],
 }
 
@@ -46,15 +46,15 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">
           <div className="lg:col-span-2">
             <button onClick={() => scrollTo('#home')} className="flex items-center gap-2.5 mb-5 group">
-              <div className="w-9 h-9 flex items-center justify-center transition-transform group-hover:scale-105">
-                <img src="/logo.svg" alt="FLEX IT logo" className="w-full h-full object-contain" />
+              <div className="w-9 h-9 flex items-center justify-center transition-transform group-hover:scale-105 rounded-lg overflow-hidden">
+                <img src="/logo.jpeg" alt="FLEX IT SOLUTIONS logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-display font-bold text-lg">
                 FLEX <span className="text-gradient">IT</span> SOLUTIONS
               </span>
             </button>
             <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-xs">
-              Premium web design & development agency based in Pune, India. We build websites that grow businesses.
+              Premium web design & development agency based in India. We build websites that grow businesses.
             </p>
 
             <div className="mb-6">

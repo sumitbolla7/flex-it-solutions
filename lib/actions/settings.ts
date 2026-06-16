@@ -14,7 +14,7 @@ export async function getSettings() {
         companyName: 'FLEX IT SOLUTIONS',
         email: 'sumitdigitalpartner@gmail.com',
         phone: '+91 9527352323',
-        address: 'Pune, Maharashtra, India',
+        address: 'India',
         testimonialTitle: 'What Clients Say',
         testimonialSubtitle:
           "Hear directly from the clients whose businesses we've helped transform.",

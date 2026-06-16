@@ -85,7 +85,7 @@ npx vercel
 ## Company Details
 
 - **Company:** FLEX IT SOLUTIONS
-- **Location:** Pune, Maharashtra, India
+- **Location:** India
 - **Phone:** +91 9527352323
 - **Email:** sumitdigitalpartner@gmail.com
 
