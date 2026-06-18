@@ -68,30 +68,6 @@ const portfoliosData = [
     createdAt: new Date('2026-06-12T08:00:00Z')
   },
   {
-    name: 'StylishBubbles',
-    slug: 'stylishbubbles',
-    category: 'eCommerce / Apparel',
-    liveUrl: 'https://stylishbubbles.in',
-    shortDescription: 'An elegant and premium e-commerce storefront for ethnic apparel and designer wear, featuring a clean layout and seamless shopping experience.',
-    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Shopify'],
-    thumbnail: '/portfolio/stylishbubbles.png',
-    featured: true,
-    published: true,
-    createdAt: new Date('2026-06-12T06:30:00Z')
-  },
-  {
-    name: 'StyleTrending',
-    slug: 'styletrending',
-    category: 'eCommerce / Watches & Fashion',
-    liveUrl: 'https://styletrending.in',
-    shortDescription: 'A contemporary and chic e-commerce store presenting curated watch and fashion collections with high conversion-focused navigation.',
-    technologies: ['WordPress', 'WooCommerce', 'PHP', 'Elementor'],
-    thumbnail: '/portfolio/styletrending.png',
-    featured: true,
-    published: true,
-    createdAt: new Date('2026-06-12T06:00:00Z')
-  },
-  {
     name: 'The Kozy Nest',
     slug: 'thekozynest',
     category: 'Real Estate / Interior Design',
@@ -220,26 +196,7 @@ const testimonialsData = [
     published: true,
     order: 3
   },
-  {
-    clientName: 'Preeti Sen',
-    designation: 'Founder',
-    companyName: 'StylishBubbles',
-    review: 'FLEX IT Solutions delivered an elegant, high-converting storefront for StylishBubbles. Our customers love the seamless checkout and clean product presentation.',
-    rating: 5,
-    featured: true,
-    published: true,
-    order: 4
-  },
-  {
-    clientName: 'Ananya Roy',
-    designation: 'Marketing Director',
-    companyName: 'StyleTrending',
-    review: 'The contemporary design and fashion catalog layouts built for StyleTrending are beautiful and easy to manage. A truly professional team!',
-    rating: 5,
-    featured: true,
-    published: true,
-    order: 5
-  }
+
 ]
 
 async function main() {
